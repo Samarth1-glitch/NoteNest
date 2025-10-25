@@ -1,17 +1,20 @@
-import ReactMarkdown from 'react-markdown'
-export default function NoteCard({ note, onDelete }) {
+export default function NoteCard({ note }) {
   return (
-    <article className="p-4 bg-white dark:bg-gray-800 rounded shadow">
-      <div className="flex justify-between items-start">
-        <strong className="text-lg">{note.title}</strong>
-        <button onClick={()=>onDelete(note._id)} className="text-sm text-red-600 dark:text-red-400">Delete</button>
+    <div className={`p-4 border rounded space-y-1 ${note.pinned ? 'border-yellow-400' : 'border-gray-300'}`}>
+      <div className="flex justify-between items-center">
+        <h3 className="font-bold">{note.title}</h3>
+        {note.pinned && <span className="text-yellow-500">⭐</span>}
       </div>
-      <div className="mt-2 prose dark:prose-invert">
-        <ReactMarkdown>{note.content || ''}</ReactMarkdown>
-      </div>
-      <div className="mt-3 flex gap-2">
-        {(note.tags||[]).map(t=> <span key={t} className="text-xs px-2 py-1 bg-gray-100 dark:bg-gray-700 rounded">{t}</span>)}
-      </div>
-    </article>
-  )
+      <p>{note.content}</p>
+      {note.tags?.length > 0 && (
+        <div className="flex flex-wrap gap-1">
+          {note.tags.map(tag => (
+            <span key={tag} className="text-xs bg-gray-200 px-1 rounded">{tag}</span>
+          ))}
+        </div>
+      )}
+      <small className="text-gray-500">Folder: {note.folder}</small>
+      {note.archived && <small className="text-red-500">Archived</small>}
+    </div>
+  );
 }
