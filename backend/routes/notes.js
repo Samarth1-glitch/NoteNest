@@ -32,6 +32,26 @@ router.post('/', authMiddleware, async (req, res) => {
   }
 });
 
+router.patch('/:id', authMiddleware, async (req, res) => {
+  try {
+    const { title, content, tags, pinned, archived, folder } = req.body;
+    const note = await Note.findOne({ _id: req.params.id, user: req.user.id });
+    if (!note) return res.status(404).json({ message: 'Note not found' });
+
+    if (title !== undefined) note.title = title;
+    if (content !== undefined) note.content = content;
+    if (tags !== undefined) note.tags = tags;
+    if (pinned !== undefined) note.pinned = pinned;
+    if (archived !== undefined) note.archived = archived;
+    if (folder !== undefined) note.folder = folder;
+
+    const updatedNote = await note.save();
+    res.json(updatedNote);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 
 // GET single
 router.get('/:id', auth, async (req, res) => {
