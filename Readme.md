@@ -1,8 +1,7 @@
 # 📝 NoteNest – Smart Notes App
 
 
-**Live Demo:** [Frontend (Vercel)](https://note-nest-seven.vercel.app/)  
-**API (Render):** [Backend (Render)](https://notenest-euf4.onrender.com)
+**Live Demo:** [(Vercel)](https://note-nest-seven.vercel.app/)
 
 ---
 
