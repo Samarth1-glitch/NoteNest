@@ -11,13 +11,27 @@ router.get('/', auth, async (req, res) => {
 })
 
 // POST create
-router.post('/', auth, async (req, res) => {
-  const { title, content, tags } = req.body
-  if (!title) return res.status(400).json({ error: 'title required' })
-  const note = new Note({ user: req.user.id, title, content, tags })
-  await note.save()
-  res.status(201).json(note)
-})
+router.post('/', authMiddleware, async (req, res) => {
+  try {
+    const { title, content, tags, pinned, archived, folder } = req.body;
+
+    const newNote = new Note({
+      user: req.user.id,
+      title,
+      content,
+      tags: tags || [],
+      pinned: pinned || false,
+      archived: archived || false,
+      folder: folder || 'Default',
+    });
+
+    const savedNote = await newNote.save();
+    res.json(savedNote);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 
 // GET single
 router.get('/:id', auth, async (req, res) => {
