@@ -1,9 +1,8 @@
 # 📝 NoteNest – Smart Notes App
 
-![NoteNest Logo](https://via.placeholder.com/150x50?text=NoteNest)  
 
-**Live Demo:** [Frontend (Vercel)](https://your-vercel-frontend-url.com)  
-**API (Render):** [Backend (Render)](https://your-render-backend-url.com)
+**Live Demo:** [Frontend (Vercel)](https://note-nest-seven.vercel.app/)  
+**API (Render):** [Backend (Render)](https://notenest-euf4.onrender.com)
 
 ---
 
@@ -46,9 +45,7 @@ Optional/Planned Features:
 
 | Register Page | Login Page | Notes Dashboard |
 |---------------|-----------|----------------|
-| ![Register](screenshots/register.png) | ![Login](screenshots/login.png) | ![Dashboard](screenshots/dashboard.png) |
-
-*(Tip: Screenshots can be added later after deployment for higher marks.)*
+| ![Register](<img width="1920" height="1080" alt="Screenshot 2025-10-25 133706" src="https://github.com/user-attachments/assets/d2c8ec96-ff6b-413f-b18b-d1e2bdc4cd5b" />) | ![Login](<img width="1920" height="1080" alt="Screenshot 2025-10-25 133715" src="https://github.com/user-attachments/assets/7979af9d-e405-4c98-b696-1facc36d66c3" />) | ![Dashboard](<img width="1920" height="1080" alt="Screenshot 2025-10-25 133330" src="https://github.com/user-attachments/assets/7eab636d-7bb1-4467-afd0-56f88a2e411f" />) |
 
 ---
 
@@ -73,13 +70,3 @@ cd ../frontend
 npm run dev       # Start frontend
 ```
 
-#🌐 Deployment URLs
-
-Frontend (Vercel): https://your-vercel-frontend-url.com
-Backend (Render): https://your-render-backend-url.com
-
-
-![Alt text](<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/c7b7a722-b58b-4933-ba17-00125d05fa67" />)
-
-#Notes:
-![Alt text](<img width="1920" height="1080" alt="Screenshot 2025-10-25 133330" src="https://github.com/user-attachments/assets/408fd922-c950-40fa-80c0-fad37948febb" />)
