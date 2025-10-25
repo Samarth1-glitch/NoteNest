@@ -1,16 +1,27 @@
-const express = require('express')
-const router = express.Router()
-const Note = require('../models/Note')
-const auth = require('../middleware/auth')
-const mongoose = require('mongoose')
+const express = require('express');
+const router = express.Router();
+const Note = require('../models/Note');
+const authMiddleware = require('../middleware/auth');
 
-// GET all - only user's notes
-router.get('/', auth, async (req, res) => {
-  const notes = await Note.find({ user: req.user.id }).sort({ createdAt: -1 })
-  res.json(notes)
-})
+// GET /api/notes?tags=&folder=&pinned=&archived=
+router.get('/', authMiddleware, async (req, res) => {
+  try {
+    const { tags, folder, pinned, archived } = req.query;
 
-// POST create
+    const filter = { user: req.user.id };
+    if (tags) filter.tags = { $in: tags.split(',') };
+    if (folder) filter.folder = folder;
+    if (pinned) filter.pinned = pinned === 'true';
+    if (archived) filter.archived = archived === 'true';
+
+    const notes = await Note.find(filter).sort({ pinned: -1, updatedAt: -1 });
+    res.json(notes);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+// POST /api/notes
 router.post('/', authMiddleware, async (req, res) => {
   try {
     const { title, content, tags, pinned, archived, folder } = req.body;
@@ -32,9 +43,11 @@ router.post('/', authMiddleware, async (req, res) => {
   }
 });
 
+// PATCH /api/notes/:id
 router.patch('/:id', authMiddleware, async (req, res) => {
   try {
     const { title, content, tags, pinned, archived, folder } = req.body;
+
     const note = await Note.findOne({ _id: req.params.id, user: req.user.id });
     if (!note) return res.status(404).json({ message: 'Note not found' });
 
@@ -52,30 +65,15 @@ router.patch('/:id', authMiddleware, async (req, res) => {
   }
 });
 
+// DELETE /api/notes/:id
+router.delete('/:id', authMiddleware, async (req, res) => {
+  try {
+    const note = await Note.findOneAndDelete({ _id: req.params.id, user: req.user.id });
+    if (!note) return res.status(404).json({ message: 'Note not found' });
+    res.json({ message: 'Note deleted successfully' });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
 
-// GET single
-router.get('/:id', auth, async (req, res) => {
-  const { id } = req.params
-  if (!mongoose.isValidObjectId(id)) return res.status(400).json({ error: 'invalid id' })
-  const note = await Note.findOne({ _id: id, user: req.user.id })
-  if (!note) return res.status(404).json({ error: 'not found' })
-  res.json(note)
-})
-
-// PUT update
-router.put('/:id', auth, async (req, res) => {
-  const { id } = req.params
-  if (!mongoose.isValidObjectId(id)) return res.status(400).json({ error: 'invalid id' })
-  const updated = await Note.findOneAndUpdate({ _id: id, user: req.user.id }, req.body, { new:true })
-  res.json(updated)
-})
-
-// DELETE
-router.delete('/:id', auth, async (req, res) => {
-  const { id } = req.params
-  if (!mongoose.isValidObjectId(id)) return res.status(400).json({ error: 'invalid id' })
-  await Note.findOneAndDelete({ _id: id, user: req.user.id })
-  res.status(204).end()
-})
-
-module.exports = router
+module.exports = router;
