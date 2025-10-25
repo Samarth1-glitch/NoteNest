@@ -40,9 +40,9 @@ Optional/Planned Features:
 ---
 
 ## 🖼 Screenshots
-![Register](<img width="1920" height="1080" alt="Screenshot 2025-10-25 133706" src="https://github.com/user-attachments/assets/d2c8ec96-ff6b-413f-b18b-d1e2bdc4cd5b" />)  
-![Login](<img width="1920" height="1080" alt="Screenshot 2025-10-25 133715" src="https://github.com/user-attachments/assets/7979af9d-e405-4c98-b696-1facc36d66c3" />) 
-![Dashboard](<img width="1920" height="1080" alt="Screenshot 2025-10-25 133330" src="https://github.com/user-attachments/assets/7eab636d-7bb1-4467-afd0-56f88a2e411f" />) 
+(<img width="1920" height="1080" alt="Screenshot 2025-10-25 133706" src="https://github.com/user-attachments/assets/d2c8ec96-ff6b-413f-b18b-d1e2bdc4cd5b" />)  
+(<img width="1920" height="1080" alt="Screenshot 2025-10-25 133715" src="https://github.com/user-attachments/assets/7979af9d-e405-4c98-b696-1facc36d66c3" />) 
+(<img width="1920" height="1080" alt="Screenshot 2025-10-25 133330" src="https://github.com/user-attachments/assets/7eab636d-7bb1-4467-afd0-56f88a2e411f" />) 
 
 ---
 
