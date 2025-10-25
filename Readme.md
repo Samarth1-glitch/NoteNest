@@ -6,7 +6,7 @@
 ---
 
 ## 🌟 Project Overview
-NoteNest is a full-stack MERN application for creating, managing, and organizing personal notes.  
+NoteNest – A secure, full-stack MERN application for creating, managing, and organizing personal notes with user authentication and a responsive, modern interface.  
 - Users can **register/login** securely using email and password.  
 - **JWT authentication** ensures each user's notes are private.  
 - Fully deployed on **Vercel (frontend)** and **Render (backend)**.  
